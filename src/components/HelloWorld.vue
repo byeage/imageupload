@@ -3,7 +3,10 @@
     <input type="file" name="image" accept="image/*" @change="fileUpload($event)"/>
     <button>Upload</button>
     <div>
-      <image-upload v-if="showImageUpload" :image="image" :image-data="imageData"></image-upload>
+      <image-upload v-if="showImageUpload"
+                    :file-upload="fileUpload"
+                    :image="image"
+                    :image-data="imageData"></image-upload>
     </div>
   </div>
 </template>
@@ -21,6 +24,7 @@ export default {
   },
   methods: {
     fileUpload (e) {
+      console.log(e)
       this.image = e.target.files[0]
       let reader = new FileReader()
       reader.onload = () => {
